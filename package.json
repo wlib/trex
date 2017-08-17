@@ -1,0 +1,31 @@
+{
+  "name": "trex-game",
+  "private": true,
+  "description": "A modified version of Chromium's T-rex game",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-better-rollup": "^1.1.1",
+    "gulp-cli": "^1.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^3.2.0",
+    "prettier": "^1.5.2",
+    "typescript": "^2.4.1"
+  },
+  "scripts": {
+    "format": "prettier --write './!(dist)*/{,/**}/*.js'",
+    "build": "npm run format && gulp",
+    "dev": "gulp watch",
+    "play": "python -m SimpleHTTPServer"
+  },
+  "keywords": ["trex", "game"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wlib/trex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wlib/trex/issues"
+  },
+  "homepage": "https://wlib.github.io/trex/"
+}

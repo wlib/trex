@@ -1,0 +1,140 @@
+.icon {
+  user-select: none;
+  display: inline-block;
+  content: -webkit-image-set(
+    url(./img/1x/dino.png) 1x,
+    url(./img/2x/dino.png) 2x
+  );
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.game {
+  transition: -webkit-filter 1.5s cubic-bezier(0.65, 0.05, 0.36, 1),
+    background-color 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+  will-change: -webkit-filter, background-color;
+}
+
+.game .inverted {
+  -webkit-filter: invert(100%);
+  background-color: #000;
+}
+
+.game .interstitial-wrapper {
+  color: #2b2b2b;
+  font-size: 1em;
+  line-height: 1.55;
+  margin: 0 auto;
+  max-width: 600px;
+  padding-top: 100px;
+  width: 100%;
+}
+
+.game .runner-container {
+  direction: ltr;
+  height: 150px;
+  max-width: 600px;
+  overflow: hidden;
+  position: absolute;
+  top: 35px;
+  width: 44px;
+}
+
+.game .runner-canvas {
+  height: 150px;
+  max-width: 600px;
+  opacity: 1;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.game .controller {
+  background: rgba(247, 247, 247, .1);
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+}
+
+#game-resources {
+  display: none;
+}
+
+
+@media (max-height: 350px) {
+  .icon {
+    margin: 0 0 10px;
+  }
+
+  .interstitial-wrapper {
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 736px) and (min-height: 240px) and (max-height: 420px) and (orientation: landscape) {
+  .interstitial-wrapper {
+    margin-bottom: 100px;
+  }
+}
+
+@media (min-height: 240px) and (orientation: landscape) {
+  .game .interstitial-wrapper {
+    margin-bottom: 90px;
+  }
+
+  .icon {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-height: 320px) and (orientation: landscape) {
+  .icon {
+    margin-bottom: 0;
+  }
+
+  .game .runner-container {
+    top: 10px;
+  }
+}
+
+@media (max-width: 240px) {
+  .interstitial-wrapper {
+    overflow: inherit;
+    padding: 0 8px;
+  }
+}
+
+.arcade-mode,
+.arcade-mode .runner-container,
+.arcade-mode .runner-canvas {
+  image-rendering: pixelated;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.arcade-mode #main-content {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.arcade-mode .interstitial-wrapper {
+  height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.arcade-mode .runner-container {
+  left: 0;
+  margin: auto;
+  right: 0;
+  transform-origin: top center;
+  transition: transform 250ms cubic-bezier(0.4, 0.0, 1, 1) .4s;
+  z-index: 2;
+}
