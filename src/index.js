@@ -3,5 +3,12 @@
 // found in the LICENSE file.
 
 import Runner from "./runner.js";
+import toggleBot from "./bot.js";
 
-export default new Runner("#main");
+const runner = new Runner("#main");
+
+addEventListener("keydown", e => {
+  if (e.key === "b") {
+    toggleBot(runner);
+  }
+});

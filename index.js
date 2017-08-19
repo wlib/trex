@@ -1,7 +1,7 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
         typeof define === 'function' && define.amd ? define('trex', factory) :
-            (global.trex = factory());
+            (factory());
 }(this, (function () {
     'use strict';
     var defaultWidth = 600;
@@ -2270,9 +2270,43 @@
         FOCUS: "focus",
         LOAD: "load"
     };
+    var trexBotInterval = 0;
+    var trexBotOn = false;
+    // Modified from https://github.com/chirag64/t-rex-runner-bot/blob/gh-pages/scripts/bot.js
+    function startBot(runner, interval) {
+        if (interval === void 0) { interval = 2; }
+        return (trexBotInterval = setInterval(function () {
+            var trex = runner.tRex;
+            var obstacles = runner.horizon.obstacles;
+            if (!trex.jumping &&
+                obstacles.length > 0 &&
+                obstacles[0].xPos + obstacles[0].width <=
+                    (parseInt(runner.currentSpeed - 0.1) - 5) * 34 + 160 &&
+                obstacles[0].xPos + obstacles[0].width > 20) {
+                trex.startJump();
+            }
+        }, interval));
+        return (trexBotOn = true);
+    }
+    function stopBot() {
+        clearInterval(trexBotInterval);
+        return (trexBotOn = false);
+    }
+    function toggleBot(runner, interval) {
+        if (trexBotOn) {
+            return stopBot();
+        }
+        else {
+            return startBot(runner, interval);
+        }
+    }
     // Copyright (c) 2014 The Chromium Authors. All rights reserved.
     // Use of this source code is governed by a BSD-style license that can be
     // found in the LICENSE file.
-    var index = new Runner("#main");
-    return index;
+    var runner = new Runner("#main");
+    addEventListener("keydown", function (e) {
+        if (e.key === "b") {
+            toggleBot(runner);
+        }
+    });
 })));
