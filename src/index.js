@@ -4,6 +4,4 @@
 
 import Runner from "./runner.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  new Runner("#main");
-});
+export default new Runner("#main");

@@ -1,7 +1,7 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define('trex', factory) :
-            (factory());
+            (global.trex = factory());
 }(this, (function () {
     'use strict';
     var defaultWidth = 600;
@@ -2273,7 +2273,6 @@
     // Copyright (c) 2014 The Chromium Authors. All rights reserved.
     // Use of this source code is governed by a BSD-style license that can be
     // found in the LICENSE file.
-    document.addEventListener("DOMContentLoaded", function () {
-        new Runner("#main");
-    });
+    var index = new Runner("#main");
+    return index;
 })));
